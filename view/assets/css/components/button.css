@@ -1,0 +1,65 @@
+:root {
+    /* Button Variables */
+    --btn-shadow-light: 0 3px 3px 0 rgba(52, 71, 103, .15);
+    --btn-shadow-medium: 0 3px 1px -2px rgba(52, 71, 103, .2);
+    --btn-shadow-dark: 0 1px 5px 0 rgba(52, 71, 103, .15);
+    --btn-shadow-primary: 0 4px 8px rgba(52, 71, 103, .2);
+    --btn-transition: all 0.3s ease;
+    --border-rounded: 50%;
+  }
+  
+  /* Base Button Styles */
+  .btn {
+    border: none;
+    background-color: unset;
+    padding: .75rem;
+    border-radius: var(--border-rounded);
+    color: var(--text-primary);
+    transition: var(--btn-transition);
+    cursor: pointer;
+    display: inline-block;
+  
+    &:hover {
+      box-shadow: 
+        var(--btn-shadow-light),
+        var(--btn-shadow-medium),
+        var(--btn-shadow-dark);
+    }
+  }
+  
+  /* Button Modifiers */
+  .btn-icon {
+    padding: .25rem;
+    
+    &:hover {
+      box-shadow: 
+        var(--btn-shadow-light),
+        var(--btn-shadow-medium),
+        var(--btn-shadow-dark);
+    }
+  }
+  
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: var(--text-white);
+    border-radius: 4px; /* Override rounded border */
+  
+    &:hover {
+      box-shadow: 
+        var(--btn-shadow-primary),
+        0 2px 4px rgba(52, 71, 103, .2),
+        0 6px 10px rgba(52, 71, 103, .2);
+      transform: translateY(-1px);
+    }
+  }
+  
+  /* Size Variants */
+  .btn-sm {
+    padding: .5rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  .btn-lg {
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+  }

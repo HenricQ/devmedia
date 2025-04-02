@@ -1,0 +1,22 @@
+.content-adm {
+    /* posicionamento na grid */
+    height: calc(100vh - 68px - 22px);
+    grid-column: 2;
+    grid-row: 2;
+    overflow: auto;
+    scrollbar-color: #00000040 #00000000;
+
+    padding: 2rem;
+
+    > * {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-adm {
+        /* posicionamento na grid */
+        height: calc(100vh - 48px - 16px);
+        grid-column: 1;
+    }
+}

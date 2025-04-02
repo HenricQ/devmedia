@@ -57,7 +57,7 @@ class ArtigoModel {
         return $stmt->execute();
     }
     
-    public function editar($id, $dados) {
+    public function editar($dados) {
         $query = "UPDATE {$this->tabela} SET 
                   titulo = :titulo, 
                   idCategoria = :idCategoria, 
@@ -71,5 +71,15 @@ class ArtigoModel {
         $stmt->bindParam(':conteudo', $dados['conteudo']);
         
         return $stmt->execute();
+    }
+
+    public function excluir($id) {
+        $query = "DELETE FROM $this->tabela WHERE id = :id;";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id", $id);
+        $stmt->execute();
+
+        return $stmt->rowCount() > 0;
     }
 }

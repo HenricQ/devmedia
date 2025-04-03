@@ -1,34 +1,66 @@
 <?php
-require_once __DIR__ . '/../../../config/env.php';
-require_once __DIR__ . '/../../../model/UsuarioModel.php';
+require_once __DIR__ . '/../config/Database.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $usuarioModel = new UsuarioModel();
-    
-    // Prepara os dados em uma variável
-    $dados = [
-        'id' => $_POST['id'] ?? null,
-        'nome' => $_POST['nome'] ?? '',
-        'email' => $_POST['email'] ?? '',
-        'dataNascimento' => $_POST['dataNascimento'] ?? '',
-        'cpf' => $_POST['cpf'] ?? ''
-    ];
+class UsuarioModel {
+    private $tabela = "usuario";
+    private $conn;
 
-    if (empty($dados['id'])) {
-        // Criar - se não tiver id
-        $salvou = $usuarioModel->criar($dados);
-    } else {
-        // Editar - se tiver id
-        $salvou = $usuarioModel->editar($dados);
+    public function __construct() {
+        $db = new Database();
+        $this->conn = $db->conectar();
     }
 
-    if ($salvou) {
-        header('Location: ' . APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_PAGES'] . 'admin/usuarios.php');    
-        exit;
-    } else {
-        echo "ERRO";
+    public function listar() {
+        $query = "SELECT * FROM {$this->tabela}";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-} else {
-    header('Location: ' . APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_PAGES'] . 'admin/usuarios.php');
-    exit;
+
+    public function buscarPorId($id) {
+        $query = "SELECT * FROM {$this->tabela} WHERE id = :id LIMIT 1";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function criar($dados) {
+        $query = "INSERT INTO {$this->tabela} (nome, email, dataNascimento, cpf) 
+                  VALUES (:nome, :email, :dataNascimento, :cpf)";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':nome', $dados['nome']);
+        $stmt->bindParam(':email', $dados['email']);
+        $stmt->bindParam(':dataNascimento', $dados['dataNascimento']);
+        $stmt->bindParam(':cpf', $dados['cpf']);
+        
+        return $stmt->execute();
+    }
+
+    public function editar($dados) {
+        $query = "UPDATE {$this->tabela} SET 
+                  nome = :nome,
+                  email = :email,
+                  dataNascimento = :dataNascimento,
+                  cpf = :cpf
+                  WHERE id = :id";
+        
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $dados['id']);
+        $stmt->bindParam(':nome', $dados['nome']);
+        $stmt->bindParam(':email', $dados['email']);
+        $stmt->bindParam(':dataNascimento', $dados['dataNascimento']);
+        $stmt->bindParam(':cpf', $dados['cpf']);
+        
+        return $stmt->execute();
+    }
+
+    public function excluir($id) {
+        $query = "DELETE FROM {$this->tabela} WHERE id = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        return $stmt->execute();
+    }
 }

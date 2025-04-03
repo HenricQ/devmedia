@@ -10,7 +10,7 @@
         </span>
     </div>
     <nav class="nav">
-        <img class="nav-logo" src="<?= APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_IMG'] ?>logo.jpg" alt="logo">
+        <img class="nav-logo" src="<?= APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_IMG'] ?>logo.png" alt="logo">
         <ul id="nav-items" class="nav-items">
             <li class="nav-item">
                 <a class="nav-link" href="<?= APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_PAGES'] . 'admin/home.php' ?>">

@@ -33,7 +33,7 @@
         <h3>Usuários >> <?= $modo == 'EDICAO' ? 'Editar ' . $artigo['id'] : 'Criar' ?></h3>
 
         <div class="container">
-            <form class="form" method="POST" action="<?= APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_PAGES'] . 'admin/artigo_salvar.php' ?>">
+            <form class="form" method="POST" action="<?= APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_PAGES'] . 'admin/artigoSalvar.php' ?>">
                 <div class="form-content">
                     <input name="id" type="hidden" value="<?= $artigo['id'] ?>">
 

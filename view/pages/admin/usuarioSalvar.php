@@ -5,23 +5,18 @@ require_once __DIR__ . '/../../../model/UsuarioModel.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usuarioModel = new UsuarioModel();
 
+    $dados = [
+        'id' => $_POST['id'] ?? null,
+        'nome' => $_POST['nome'] ?? '',
+        'email' => $_POST['email'] ?? '',
+        'dataNascimento' => $_POST['dataNascimento'] ?? null,
+        'cpf' => $_POST['cpf'] ?? ''
+    ];
+
     if (empty($_POST['id'])) {
-        // Criar - se não tiver id
-        $salvou = $usuarioModel->criar([
-            'nome' => $_POST['nome'],
-            'email' => $_POST['email'],
-            'dataNascimento' => $_POST['dataNascimento'],
-            'cpf' => $_POST['cpf']
-        ]);
+        $salvou = $usuarioModel->criar($dados);
     } else {
-        // Editar - se tiver id
-        $salvou = $usuarioModel->editar([
-            'id' => $_POST['id'],
-            'nome' => $_POST['nome'],
-            'email' => $_POST['email'],
-            'dataNascimento' => $_POST['dataNascimento'],
-            'cpf' => $_POST['cpf']
-        ]);
+        $salvou = $usuarioModel->editar($dados);
     }
 
     if ($salvou) {

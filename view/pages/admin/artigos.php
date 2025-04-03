@@ -45,10 +45,10 @@
                                 </span>
                             </a>
                             <form method="POST"
-                                action="<?= APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_PAGES'] . 'admin/artigo_excluir.php' ?>">
+                                action="<?= APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_PAGES'] . 'admin/artigoExcluir.php' ?>">
                                 <input type="hidden" name="id" value="<?= $item['id'] ?>">
-                                    <button>
-                                        <span class="btn-icon material-symbols-outlined" title="Excluir">
+                                    <button class="btn-icon material-symbols-outlined">
+                                        <span title="Excluir">
                                             delete
                                         </span>
                                     </button>

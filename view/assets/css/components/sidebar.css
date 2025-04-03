@@ -19,7 +19,8 @@
 
     .nav {
         .nav-logo {
-            width: 100%;
+            filter: invert(100%);
+            width: 90%;
             height: 68px;
             object-fit: contain;
             margin: 20px 0;

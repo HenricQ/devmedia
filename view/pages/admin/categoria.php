@@ -27,7 +27,7 @@
         <h3>Categorias >> <?= $modo == 'EDICAO' ? 'Editar ' . $categoria['id'] : 'Criar' ?></h3>
 
         <div class="container">
-            <form class="form" method="POST" action="<?= APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_PAGES'] . 'admin/categoria_salvar.php' ?>">
+            <form class="form" method="POST" action="<?= APP_CONSTANTS['APP_URL'] . APP_CONSTANTS['PATH_PAGES'] . 'admin/categoriaSalvar.php' ?>">
                 <div class="form-content">
                     <input type="hidden" name="id" value="<?= $categoria['id'] ?>">
 

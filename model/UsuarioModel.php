@@ -11,7 +11,7 @@ class UsuarioModel {
     }
 
     public function listar() {
-        $query = "SELECT * FROM {$this->tabela}";
+        $query = "SELECT * FROM $this->tabela";
         
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -19,7 +19,8 @@ class UsuarioModel {
     }
 
     public function buscarPorId($id) {
-        $query = "SELECT * FROM {$this->tabela} WHERE id = :id LIMIT 1";
+        $query = "SELECT * FROM $this->tabela WHERE id = :id LIMIT 1";
+        
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -27,7 +28,7 @@ class UsuarioModel {
     }
 
     public function criar($dados) {
-        $query = "INSERT INTO {$this->tabela} (nome, email, dataNascimento, cpf) 
+        $query = "INSERT INTO $this->tabela (nome, email, dataNascimento, cpf) 
                   VALUES (:nome, :email, :dataNascimento, :cpf)";
         
         $stmt = $this->conn->prepare($query);
@@ -40,7 +41,7 @@ class UsuarioModel {
     }
 
     public function editar($dados) {
-        $query = "UPDATE {$this->tabela} SET 
+        $query = "UPDATE $this->tabela SET 
                   nome = :nome,
                   email = :email,
                   dataNascimento = :dataNascimento,
@@ -58,7 +59,8 @@ class UsuarioModel {
     }
 
     public function excluir($id) {
-        $query = "DELETE FROM {$this->tabela} WHERE id = :id";
+        $query = "DELETE FROM $this->tabela WHERE id = :id";
+
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         return $stmt->execute();

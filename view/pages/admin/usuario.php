@@ -2,7 +2,6 @@
     require_once __DIR__ . '/../../../config/env.php';
     require_once __DIR__ . '/../../../model/UsuarioModel.php';
 
-    // modo edição ou criação
     if (isset($_GET['id'])) {
         $modo = 'EDICAO';
         $usuarioModel = new UsuarioModel();

@@ -7,7 +7,7 @@ create table artigo(
 	id int primary key not null auto_increment,
     titulo varchar(127) NOT NULL,
     idCategoria int not null,
-    foreign key (idCategoria) references categoria(id),
+    foreign key (idCategoria) references categoria(id) on delete cascade,
     conteudo varchar(2047)
 );
 

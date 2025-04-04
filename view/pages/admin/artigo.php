@@ -6,7 +6,6 @@
     $categoriaModel = new CategoriaModel();
     $categorias = $categoriaModel->listar();
 
-    // modo edição ou criação
     if (isset($_GET['id'])) {
         $modo = 'EDICAO';
         $artigoModel = new ArtigoModel();

@@ -2,7 +2,6 @@
     require_once __DIR__ . '/../../../config/env.php';
     require_once __DIR__ . '/../../../model/CategoriaModel.php';
 
-    // modo edição ou criação
     if (isset($_GET['id'])) {
         $modo = 'EDICAO';
         $categoriaModel = new CategoriaModel();
